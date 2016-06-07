@@ -1,0 +1,13 @@
+/*
+	GOH 12 - Sound definitions
+*/
+
+// GOH 12 - Firing sounds
+weapon/gohfire			gohfire
+weapon/gohfire2			gohfire2
+
+// GOH-12 Shotgun shell casings
+$random weapon/gohshell {weapon/gohshell1 weapon/gohshell2}
+$pitchshift gohshell 3
+weapon/gohshell1		gohshel1
+weapon/gohshell2		gohshel2
