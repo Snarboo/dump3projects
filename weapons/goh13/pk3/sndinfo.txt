@@ -6,8 +6,17 @@
 weapon/gohfire			gohfire
 weapon/gohfire2			gohfire2
 
-// GOH-12 Shotgun shell casings
+// GOH 12 - Tractor beam sounds
+$random weapon/gohtb {weapon/gohtb1 weapon/gohtb2 weapon/gohtb3 weapon/gohtb4}
+$pitchshift weapon/gohtb 3
+weapon/gohtb1		gohtb1
+weapon/gohtb2		gohtb2
+weapon/gohtb3		gohtb3
+weapon/gohtb4		gohtb4
+
+/* GOH-12 Shotgun shell casings - Unused
 $random weapon/gohshell {weapon/gohshell1 weapon/gohshell2}
 $pitchshift gohshell 3
 weapon/gohshell1		gohshel1
 weapon/gohshell2		gohshel2
+*/

@@ -2,7 +2,7 @@ GOH-12 Credits
 
 Graphics:
 	Hud Sprites - Snarboo
-	Shotgun Shells - Monolith Software
-	Smoke - Monolith Software
+	Pickup - id Software with edits by Snarboo
 Sounds: 
 	Shotgun Sounds - Monolith Software
+	Tractor Beam Sounds - Monolith Software
