@@ -1,0 +1,163 @@
+/* 
+	Dump 3 Project
+	Weapon: BIP Industries Slug Thrower
+	Author: Snarboo
+*/
+
+actor slugPuff : BulletPuff
+{
+	Decal "BULLETCHIP"
+}
+
+actor notAPuff
+/*
+	Invisible bullet puff
+*/
+{
+	Decal "None"
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		Stop
+	}
+}
+
+/* actor slugThrowerCount : Ammo
+// This actor keeps track of how many Slug Throwers we have
+{
+    Ammo.BackpackAmount 2
+	Inventory.Amount 1
+	Inventory.MaxAmount 2
+	-INVBAR
+	States
+	{
+	Spawn:
+		BIPP A -1
+		Stop
+	}
+}
+
+actor slugThrowerPickup : CustomInventory
+// This gives us both a Slug Thrower and adds to our Slug Thrower count!
+{
+	Scale 0.75
+	Height 8
+	Radius 8
+	Inventory.PickupMessage "You got the Slug Thrower!"
+	States
+	{
+	Spawn:
+		BIPP A -1
+		Stop
+	Pickup:
+		TNT1 A 0 A_GiveInventory ("slugThrower", 1)
+		TNT1 A 0 A_GiveInventory ("slugThrowerCount", 1)
+		Stop
+	}
+} */
+	
+
+actor slugThrower : Weapon
+/*
+	Description:
+	The BIP Industries Slug Thrower is a standard shotgun refitted to fire
+	high density uranium slugs. The Slug Thrower can easily pierce multiple
+	opponents, making it a valuable asset in crow control situations.
+	
+	Weapon Class: Super Shotgun
+	
+	Primary fire: Semiauto slug blast
+		-Primary Ammo: Shells
+	Secondary: The player pulls out a second Slug Thrower, doubling the fire
+			   power!
+		-Secondary Ammo: Shells
+*/
+{
+	Scale 0.75
+	Weapon.AmmoUse 1
+	Weapon.AmmoUse2 1
+	Weapon.AmmoGive 8
+	Weapon.AmmoType "Shell"
+	Weapon.AmmoType2 "Shell"
+	Weapon.SlotNumber 3
+	Inventory.PickupMessage "You got dual Slug Throwers!"
+	Tag "Slug Thrower"
+	Obituary "%o was shot through the heart by %k's Slug Thrower."
+	States
+	{
+	Select:
+		BIPR AAAAAA 0 A_Raise
+		BIPR A 1 A_Raise 
+		Loop
+	Deselect:
+		BIPR EDCBA 1
+	Deselect2:
+		BIPR AAAAAAA 0 A_Lower
+		BIPR A 1 A_Lower
+		Loop
+	Ready:	
+		BIPR ABCDE 1
+		Goto Ready2
+	Ready2:
+		BIPG A 1 A_WeaponReady
+		Loop
+	Fire:
+		BIPF A 0 Bright A_Quake (1, 5, 0, 1, 0)
+		BIPF A 0 Bright A_PlaySound ("weapon/slugfire", CHAN_WEAPON)
+		BIPF A 0 Bright A_FireBullets (frandom(-0.1,0.1), frandom(-0.1,0.1), 1, 4, "SlugPuff", FBF_EXPLICITANGLE)
+			// This is done so that an excessive number of bulletpuffs are not
+			// spawned
+		BIPF A 1 Bright A_FireBullets (frandom(-1.0,1.0), frandom(-1.0,1.0), 8, 4, "notAPuff", FBF_EXPLICITANGLE | FBF_USEAMMO)
+		BIPF B 2 Bright
+		BIPF CE 1
+		BIPF F 2
+		BIPF G 3
+		BIPF H 4 A_PlaySound ("weapon/slugcock", CHAN_5)
+		BIPF I 3
+		BIPF J 2
+		BIPF KLM 1
+		BIPG A 7
+		BIPG A 0 A_Refire
+		Goto Ready2
+	AltFire:
+		BIPA ABCDEFG 1
+	AltReady:
+		BIPA GGGGGGGGGGGGGGGGG 1 A_Refire
+		BIPA GGGGGGGGGGGGGGGGG 1 A_Refire
+			// The player has one second to fire the alt fire
+			// This is split into two lines for readability
+	AltLower:
+		BIPA GFEDCBA 1
+		Goto Ready2
+	AltHold:
+		BPAF A 0 Bright A_Quake (1, 5, 0, 1, 0)
+		BPAF A 0 Bright A_PlaySound ("weapon/slugfire", CHAN_WEAPON)
+		BPAF A 0 Bright A_FireBullets (frandom(-0.1,0.1), frandom(-0.1,0.1), 1, 4, "SlugPuff", FBF_EXPLICITANGLE)
+		BPAF A 1 Bright A_FireBullets (frandom(-1.0,1.0), frandom(-1.0,1.0), 8, 4, "notAPuff", FBF_EXPLICITANGLE | FBF_USEAMMO)
+		BPAF B 2 Bright
+		BPAF DEF 1
+		BPAF G 2
+		BPAF H 3 
+		BPAF H 0 A_JumpIfNoAmmo ("AltLower")
+		BPAF I 0 Bright A_PlaySound ("weapon/slugcock", CHAN_5)
+		BPAF I 0 Bright A_Quake (1, 5, 0, 1, 0)
+		BPAF I 0 Bright A_PlaySound ("weapon/slugfire", CHAN_WEAPON)
+		BPAF I 0 Bright A_FireBullets (frandom(-0.1,0.1), frandom(-0.1,0.1), 1, 4, "SlugPuff", FBF_EXPLICITANGLE)
+		BPAF I 1 Bright A_FireBullets (frandom(-1.0,1.0), frandom(-1.0,1.0), 8, 4, "notAPuff", FBF_EXPLICITANGLE | FBF_USEAMMO)
+		BPAF J 2 Bright
+		BPAF LMN 1
+		BPAF O 2 
+		BPAF P 3
+		BPAF Q 3 A_PlaySound ("weapon/slugcock", CHAN_5)
+		BPAF R 3
+		BPAF S 2
+		BPAF TUV 1
+		BIPA G 1
+		BIPA G 0 A_Refire
+		Goto AltReady
+	Spawn:
+		BIPP B -1
+		Stop
+	}
+}

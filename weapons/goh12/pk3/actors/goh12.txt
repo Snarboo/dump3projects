@@ -54,7 +54,7 @@ actor goh12 : Weapon
 	Primary fire: Semiauto shotgun blast
 		-Primary Ammo: Shells
 	Secondary: Tap to fire both barrels
-		-Seconary Ammo: Shells
+		-Secondary Ammo: Shells
 	Tertiary: Hold alt fire for tractor beam, then release for both barrels!
 		-Tertiary Ammo: Cells
 */
@@ -119,8 +119,8 @@ actor goh12 : Weapon
 		GORF A 0 A_PlaySound ("weapon/gohfire", CHAN_WEAPON)
 		GORF A 0 A_TakeInventory ("Shell", 1)
 		GORF A 1 Bright A_FireBullets (5, 2, 9, 4, "BulletPuff", 0)
-		GORF A 1 Bright A_SetPitch (pitch - 0.5)
-		GORF A 1 Bright A_SetPitch (pitch - 0.5)
+		GORF A 1 Bright A_SetPitch (pitch - 0.75)
+		GORF A 1 Bright A_SetPitch (pitch - 0.25)
 		GORF B 1 A_SetPitch (pitch + 0.5)
 		GORF B 1 A_SetPitch (pitch + 0.25)
 		GORF B 1 A_SetPitch (pitch + 0.15)

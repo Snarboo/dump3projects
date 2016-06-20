@@ -1,0 +1,16 @@
+/*
+	Slug Thrower - Sound definitions
+*/
+
+// Slug Thrower - Firing sound
+weapon/slugfire			slugfire
+$pitchshift				weapon/slugfire		3
+
+// Slug Thrower - Cocking sound
+weapon/slugcock			slugcock
+$pitchshift		 		weapon/slugcock		4
+
+// Slug Thrower - Nope
+// Unused
+weapon/slugnope			slugnope
+$pitchshift				weapon/slugnope		3

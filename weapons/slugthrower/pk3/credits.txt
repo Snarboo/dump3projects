@@ -1,0 +1,8 @@
+Slug Thrower Credits
+
+Graphics:
+	Hud Sprites - Hybrid (Motivetime Ltd, rip by torridgristle)
+	Pickup - Doom 2 (id Software, with edits by Snarboo)
+Sounds: 
+	Gun Sounds - Hybrid (Motivetime Ltd)
+	Nope sound - Strife (Rogue Software)
