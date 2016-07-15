@@ -149,7 +149,7 @@ actor slugThrower : Weapon
 		BPAF LMN 1
 		BPAF O 2 
 		BPAF P 3
-		BPAF Q 3 A_PlaySound ("weapon/slugcock", CHAN_5)
+		BPAF Q 3 A_PlaySound ("weapon/slugcock", CHAN_6)
 		BPAF R 3
 		BPAF S 2
 		BPAF TUV 1

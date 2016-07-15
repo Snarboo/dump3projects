@@ -5,10 +5,12 @@
 // Slug Thrower - Firing sound
 weapon/slugfire			slugfire
 $pitchshift				weapon/slugfire		3
+$volume					weapon/slugfire		0.95
 
 // Slug Thrower - Cocking sound
 weapon/slugcock			slugcock
 $pitchshift		 		weapon/slugcock		4
+$volume					weapon/slugcock		1.0
 
 // Slug Thrower - Nope
 // Unused

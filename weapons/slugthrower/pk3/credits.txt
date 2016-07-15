@@ -4,5 +4,5 @@ Graphics:
 	Hud Sprites - Hybrid (Motivetime Ltd, rip by torridgristle)
 	Pickup - Doom 2 (id Software, with edits by Snarboo)
 Sounds: 
-	Gun Sounds - Hybrid (Motivetime Ltd)
+	Gun Sounds - JarAxe (Daggergun) [Source: www.freesound.org/people/JarAxe/sounds/205969/]
 	Nope sound - Strife (Rogue Software)
