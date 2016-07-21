@@ -80,6 +80,8 @@ actor goh12 : Weapon
 		GOHR A 1 A_Raise 
 		Loop
 	Deselect:
+		GOHR G 0 A_StopSound (CHAN_WEAPON)
+			// This stops any stray sounds that may have made it thru
 		GOHR GFEDCBA 1
 		GOHR A 0 A_TakeInventory ("goh12Sequence", 0)
 			// The barrels are reset when the weapon is lowered
@@ -102,14 +104,11 @@ actor goh12 : Weapon
 			// This keeps track of which barrel has been fired 
 		GOLF A 0 A_PlaySound ("weapon/gohfire", CHAN_WEAPON)
 		GOLF A 0 A_TakeInventory ("Shell", 1)
+		GOLF A 0 Bright A_GunFlash ("Flash")
 		GOLF A 1 Bright A_FireBullets (5, 2, 9, 4, "BulletPuff", 0)
-		GOLF A 1 Bright A_SetPitch (pitch - 0.75) 
-			// Always remember to reference the player's pitch first!
-		GOLF A 1 Bright A_SetPitch (pitch - 0.25)
-		GOLF B 1 A_SetPitch (pitch + 0.5)
-		GOLF B 1 A_SetPitch (pitch + 0.25)
-		GOLF B 1 A_SetPitch (pitch + 0.15)
-		GOLF B 1 A_SetPitch (pitch + 0.1)
+		GOLF A 2 Bright A_Quake (1, 5, 0, 1, 0)
+			// A_Quake is handy for users that don't use mouse look!
+		GOLF B 4
 		GOLF C 3
 		GOLF DEF 1
 		GOHG A 2 A_GiveInventory ("goh12Sequence", 1)
@@ -118,13 +117,10 @@ actor goh12 : Weapon
 	FireRight:
 		GORF A 0 A_PlaySound ("weapon/gohfire", CHAN_WEAPON)
 		GORF A 0 A_TakeInventory ("Shell", 1)
+		GORF A 0 Bright A_GunFlash ("Flash")
 		GORF A 1 Bright A_FireBullets (5, 2, 9, 4, "BulletPuff", 0)
-		GORF A 1 Bright A_SetPitch (pitch - 0.75)
-		GORF A 1 Bright A_SetPitch (pitch - 0.25)
-		GORF B 1 A_SetPitch (pitch + 0.5)
-		GORF B 1 A_SetPitch (pitch + 0.25)
-		GORF B 1 A_SetPitch (pitch + 0.15)
-		GORF B 1 A_SetPitch (pitch + 0.1)
+		GORF A 2 Bright A_Quake (1, 5, 0, 1, 0)
+		GORF B 4
 		GORF C 3
 		GORF DEF 1
 		GOHG A 2 A_TakeInventory ("goh12Sequence", 0)
@@ -135,12 +131,12 @@ actor goh12 : Weapon
 			// Does the player have enough cells? If so, fire tractor beam
 		Goto CheckFireBoth // Else fire both barrels
 	AltHold:
-		GOTB A 0 A_PlaySound ("weapon/gohtb", CHAN_WEAPON)
+		GOTB A 0 A_PlaySound ("weapon/gohtb", CHAN_WEAPON, 1.0, 1)
+			// A looping beam sound
 		GOTB A 1 Bright A_RailAttack (0, 0, 0, "Blue", "None", RGF_Silent | RGF_Fullbright | RGF_NoPiercing, 0, "None", 0, 0, 128, 1)
 		GOTB A 0 A_FireCustomMissile ("goh12TractorBeam", 0, 1)
 		GOTB B 1 Bright A_RailAttack (0, 0, 0, "Blue", "None", RGF_Silent | RGF_Fullbright | RGF_NoPiercing, 0, "None", 0, 0, 128, 1)
 		GOTB B 0 A_FireCustomMissile ("goh12TractorBeam", 0, 0)
-		GOTB C 0 A_PlaySound ("weapon/gohtb", CHAN_WEAPON)
 		GOTB C 1 Bright A_RailAttack (0, 0, 0, "Blue", "None", RGF_Silent | RGF_Fullbright | RGF_NoPiercing, 0, "None", 0, 0, 128, 1)
 		GOTB C 0 A_FireCustomMissile ("goh12TractorBeam", 0, 0)
 		GOTB D 1 Bright A_RailAttack (0, 0, 0, "Blue", "None", RGF_Silent | RGF_Fullbright | RGF_NoPiercing, 0, "None", 0, 0, 128, 1)
@@ -153,24 +149,35 @@ actor goh12 : Weapon
 		GOHG A 0 A_Refire 
 			// Else drop through and fire both barrels
 	CheckFireBoth:
+		GOHG A 0 A_StopSound (CHAN_WEAPON)
+			// This keeps the tractor beam sound from looping forever
 		GOHG A 0 A_JumpIfInventory ("Shell", 2, "FireBoth")
 			// Are there enough shells? If so, fire both barrels
 		Goto Fire // Else fire single barrel
 	FireBoth:
 		GOBF A 0 A_PlaySound ("weapon/gohfire2", CHAN_WEAPON)
 		GOBF A 0 A_TakeInventory ("Shell", 2)
+		GOBF A 0 Bright A_GunFlash ("Flash2")
 		GOBF A 1 Bright A_FireBullets (6, 3, 18, 4, "BulletPuff", 0)
-		GOBF A 1 Bright A_SetPitch (pitch - 1.25)
-		GOBF A 1 Bright A_SetPitch (pitch - 0.75)
-		GOBF B 1 A_SetPitch (pitch - 0.5)
-		GOBF B 1 A_SetPitch (pitch + 1.50)
-		GOBF B 1 A_SetPitch (pitch + 0.75)
-		GOBF B 1 A_SetPitch (pitch + 0.25)
+		GOBF A 2 Bright A_Quake (2, 5, 0, 1, 0)
+		GOBF B 4 
 		GOBF C 4
 		GOBF DEFGH 1
 		GOHG A 20
 		GOHG A 5 A_Refire ("AltFire")
 		Goto Ready2
+	Flash:
+		TNT1 A 1 A_Light (1)
+		TNT1 A 2 A_Light (2)
+		TNT1 A 1 A_Light (1)
+		TNT1 A 0 A_Light (0)
+		Stop
+	Flash2:
+		TNT1 A 1 A_Light (2)
+		TNT1 A 2 A_Light (3)
+		TNT1 A 1 A_Light (1)
+		TNT1 A 0 A_Light (0)
+		Stop
 	Spawn:
 		GOHP A -1
 		Stop

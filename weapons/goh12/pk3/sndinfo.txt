@@ -4,15 +4,20 @@
 
 // GOH 12 - Firing sounds
 weapon/gohfire			gohfire
+$volume				weapon/gohfire	0.9
 weapon/gohfire2			gohfire2
+$volume				weapon/gohfire2	1.0
 
 // GOH 12 - Tractor beam sounds
-$random weapon/gohtb {weapon/gohtb1 weapon/gohtb2 weapon/gohtb3 weapon/gohtb4}
+//$random weapon/gohtb {weapon/gohtb1 weapon/gohtb2 weapon/gohtb3 weapon/gohtb4}
 $pitchshift weapon/gohtb 3
-weapon/gohtb1		gohtb1
+weapon/gohtb		gohtb
+$volume				weapon/gohtb	0.8
+/* GOH-12 - Unused tractor beam sounds
 weapon/gohtb2		gohtb2
 weapon/gohtb3		gohtb3
 weapon/gohtb4		gohtb4
+*/
 
 /* GOH-12 Shotgun shell casings - Unused
 $random weapon/gohshell {weapon/gohshell1 weapon/gohshell2}

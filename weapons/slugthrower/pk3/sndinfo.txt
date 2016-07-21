@@ -10,7 +10,7 @@ $volume					weapon/slugfire		0.95
 // Slug Thrower - Cocking sound
 weapon/slugcock			slugcock
 $pitchshift		 		weapon/slugcock		4
-$volume					weapon/slugcock		1.0
+$volume					weapon/slugcock		0.90
 
 // Slug Thrower - Nope
 // Unused
