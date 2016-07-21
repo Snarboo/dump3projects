@@ -11,6 +11,7 @@ actor goh12TractorBeam : LoreShot
 {
 	Radius 13
 	Height 8
+	Scale 0.25
 	Speed 64 
 	Damage (1) // Must do damage in order to "reel in" enemies!
 	ReactionTime 2 // Flies ~128 units before petering out.
@@ -27,10 +28,13 @@ actor goh12TractorBeam : LoreShot
 	States
 	{
 	Spawn:
-		TNT1 A 4 A_Countdown
+		TBEM ABC 2 Bright
+		TBEM D 2 Bright A_Countdown
+		TBEM D 0 Bright A_Countdown
+			// Bit odd, but otherwise it's too short
 		Loop
 	Death:
-		TNT1 A 1
+		TBEM E 1 Bright
 		Stop
 	}
 }
@@ -127,23 +131,6 @@ actor goh12 : Weapon
 		GOHG A 0 A_Refire
 		Goto Ready2
 	AltFire:
-		GOTB A 0 A_JumpIfInventory ("Cell", 1, "TractorBeam") 
-			// Does the player have enough cells? If so, fire tractor beam
-		Goto CheckFireBoth // Else fire both barrels
-	AltHold:
-		GOTB A 0 A_PlaySound ("weapon/gohtb", CHAN_WEAPON, 1.0, 1)
-			// A looping beam sound
-		GOTB A 1 Bright A_RailAttack (0, 0, 0, "Blue", "None", RGF_Silent | RGF_Fullbright | RGF_NoPiercing, 0, "None", 0, 0, 128, 1)
-		GOTB A 0 A_FireCustomMissile ("goh12TractorBeam", 0, 1)
-		GOTB B 1 Bright A_RailAttack (0, 0, 0, "Blue", "None", RGF_Silent | RGF_Fullbright | RGF_NoPiercing, 0, "None", 0, 0, 128, 1)
-		GOTB B 0 A_FireCustomMissile ("goh12TractorBeam", 0, 0)
-		GOTB C 1 Bright A_RailAttack (0, 0, 0, "Blue", "None", RGF_Silent | RGF_Fullbright | RGF_NoPiercing, 0, "None", 0, 0, 128, 1)
-		GOTB C 0 A_FireCustomMissile ("goh12TractorBeam", 0, 0)
-		GOTB D 1 Bright A_RailAttack (0, 0, 0, "Blue", "None", RGF_Silent | RGF_Fullbright | RGF_NoPiercing, 0, "None", 0, 0, 128, 1)
-		GOTB D 0 A_FireCustomMissile ("goh12TractorBeam", 0, 0)
-		GOTB D 0 A_Refire
-		Goto CheckFireBoth
-	TractorBeam:
 		GOHG A 4 
 			// Is the player holding the fire button? If so, fire tractor beam
 		GOHG A 0 A_Refire 
@@ -164,8 +151,22 @@ actor goh12 : Weapon
 		GOBF C 4
 		GOBF DEFGH 1
 		GOHG A 20
-		GOHG A 5 A_Refire ("AltFire")
+		GOHG A 5 A_Refire ("AltHold")
 		Goto Ready2
+	AltHold:
+		GOTB A 0 A_JumpIfInventory ("Cell", 1, "TractorBeam") 
+			// Does the player have enough cells? If so, fire tractor beam
+		Goto CheckFireBoth
+	TractorBeam:
+		GOTB A 0 A_JumpIfNoAmmo ("AltFire")
+		GOTB A 0 A_PlaySound ("weapon/gohtb", CHAN_WEAPON, 1.0, 1)
+			// A looping beam sound
+		GOTB A 1 A_FireCustomMissile ("goh12TractorBeam", 0, 1)
+		GOTB B 1 A_FireCustomMissile ("goh12TractorBeam", 0, 0)
+		GOTB C 1 A_FireCustomMissile ("goh12TractorBeam", 0, 0)
+		GOTB D 1 A_FireCustomMissile ("goh12TractorBeam", 0, 0)
+		GOTB D 0 A_Refire
+		Goto CheckFireBoth
 	Flash:
 		TNT1 A 1 A_Light (1)
 		TNT1 A 2 A_Light (2)

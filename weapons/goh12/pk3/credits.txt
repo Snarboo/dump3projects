@@ -2,6 +2,7 @@ GOH-12 Credits
 
 Graphics:
 	Hud Sprites - Snarboo
+	Tractor Beam - Xaser (closer_x.wad)
 	Pickup - id Software with edits by Snarboo
 Sounds: 
 	Shotgun Sounds:
