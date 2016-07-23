@@ -137,7 +137,7 @@ actor goh12 : Weapon
 			// Else drop through and fire both barrels
 	CheckFireBoth:
 		GOHG A 0 A_StopSound (CHAN_WEAPON)
-			// This keeps the tractor beam sound from looping forever
+			// Stops the tractor beam sound
 		GOHG A 0 A_JumpIfInventory ("Shell", 2, "FireBoth")
 			// Are there enough shells? If so, fire both barrels
 		Goto Fire // Else fire single barrel
@@ -159,10 +159,10 @@ actor goh12 : Weapon
 		Goto CheckFireBoth
 	TractorBeam:
 		GOTB A 0 A_JumpIfNoAmmo ("AltFire")
-		GOTB A 0 A_PlaySound ("weapon/gohtb", CHAN_WEAPON, 1.0, 1)
-			// A looping beam sound
+		GOTB A 0 A_PlaySound ("weapon/gohtb", CHAN_WEAPON)
 		GOTB A 1 A_FireCustomMissile ("goh12TractorBeam", 0, 1)
 		GOTB B 1 A_FireCustomMissile ("goh12TractorBeam", 0, 0)
+		GOTB C 0 A_PlaySound ("weapon/gohtb", CHAN_WEAPON)
 		GOTB C 1 A_FireCustomMissile ("goh12TractorBeam", 0, 0)
 		GOTB D 1 A_FireCustomMissile ("goh12TractorBeam", 0, 0)
 		GOTB D 0 A_Refire

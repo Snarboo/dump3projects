@@ -8,4 +8,4 @@ Sounds:
 	Shotgun Sounds:
 		Single barrel - SPAS-12 by duesto (www.freesound.org/people/duesto/sounds/156904/)
 		Double barrel - Shotgun2 by Peeper66 (www.freesound.org/people/Peeper66/sounds/269455/)
-	Tractor Beam Sounds - Galaga Mid-Boss Tractor Beam by SgtPepperArc360 (www.freesound.org/people/SgtPepperArc360/sounds/333316/)
+	Tractor Beam Sounds - Freedoom (DSPLASMA)
